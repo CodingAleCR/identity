@@ -35,21 +35,12 @@
             android:text="@string/captureId_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_barcode"
+            android:text="@string/barcode"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
     </LinearLayout>
-
-    <TextView
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/id_list"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-    <android.support.v7.widget.RecyclerView
-        android:visibility="gone"
-        android:id="@+id/rv_identities"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_identity"/>
-
 
 </LinearLayout>

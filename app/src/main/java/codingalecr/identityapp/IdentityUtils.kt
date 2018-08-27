@@ -7,7 +7,7 @@ import kotlin.experimental.xor
  * @Author: aulate
  * @Date:   6/7/18
  */
-class IdentityUtils {
+object IdentityUtils {
 
     data class Person(
             var cedula: String? = null,
@@ -39,10 +39,10 @@ class IdentityUtils {
                 j = 0
             }
             val c = (keysArray[j] xor raw[i]).toChar()
-            if ((c + "").matches("^[a-zA-Z0-9]*$".toRegex())) {
-                d += c
+            d += if ((c + "").matches("^[a-zA-Z0-9]*$".toRegex())) {
+                c
             } else {
-                d += ' '.toString()
+                ' '.toString()
             }
             j++
         }

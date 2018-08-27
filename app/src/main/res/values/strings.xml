@@ -4,7 +4,9 @@
     <string name="title_activity_camera">CameraActivity</string>
     <string name="capture_button">Capturar ID</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="addId_button">Agregar ID</string>
-    <string name="captureId_button">Capturar ID</string>
+    <string name="addId_button">Abrir Galeria</string>
+    <string name="captureId_button">Abrir Cámara</string>
     <string name="id_list">Lista de IDs</string>
+    <string name="make_photo">Make Photo</string>
+    <string name="barcode">Scan Barcode</string>
 </resources>
