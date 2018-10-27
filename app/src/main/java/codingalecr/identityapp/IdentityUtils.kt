@@ -7,31 +7,34 @@ import kotlin.experimental.xor
  * @Author: aulate
  * @Date:   6/7/18
  */
-class IdentityUtils {
+object IdentityUtils {
 
-    data class Person(
-            var cedula: String? = null,
-            var nombre: String? = null,
-            var apellido1: String? = null,
-            var apellido2: String? = null,
-            var genero: Char = ' ',
-            var fechaNacimiento: String? = null,
-            var fechaVencimiento: String? = null
+    data class Persona(
+            var id: String? = null,
+            var name: String? = null,
+            var lastname1: String? = null,
+            var lastname2: String? = null,
+            var gender: Char = ' ',
+            var birthdate: String? = null,
+            var expirationdate: String? = null
     ) {
-
         override fun toString(): String {
-            return this.cedula + " " +
-                    this.apellido1 + " " +
-                    this.apellido2 + " " +
-                    this.nombre + " " +
-                    this.fechaNacimiento + " " +
-                    this.fechaVencimiento
+            return this.id + " " +
+                    this.lastname1 + " " +
+                    this.lastname2 + " " +
+                    this.name + " " +
+                    this.birthdate + " " +
+                    this.expirationdate
+        }
+
+        fun getLastname(): String {
+            return this.lastname1 + " " + this.lastname2
         }
     }
 
     private val keysArray = byteArrayOf(0x27.toByte(), 0x30.toByte(), 0x04.toByte(), 0xA0.toByte(), 0x00.toByte(), 0x0F.toByte(), 0x93.toByte(), 0x12.toByte(), 0xA0.toByte(), 0xD1.toByte(), 0x33.toByte(), 0xE0.toByte(), 0x03.toByte(), 0xD0.toByte(), 0x00.toByte(), 0xDf.toByte(), 0x00.toByte())
 
-    fun parse(raw: ByteArray): Person? {
+    fun parse(raw: ByteArray): Persona? {
         var d = ""
         var j = 0
         for (i in raw.indices) {
@@ -46,16 +49,16 @@ class IdentityUtils {
             }
             j++
         }
-        var p: Person? = Person()
+        var p: Persona? = Persona()
         try {
             p?.run {
-                cedula = d.substring(0, 9).trim { it <= ' ' }
-                apellido1 = d.substring(9, 35).trim { it <= ' ' }
-                apellido2 = d.substring(35, 61).trim { it <= ' ' }
-                nombre = d.substring(61, 91).trim { it <= ' ' }
-                genero = d[91]
-                fechaNacimiento = d.substring(92, 96) + "-" + d.substring(96, 98) + "-" + d.substring(98, 100)
-                fechaVencimiento = d.substring(100, 104) + "-" + d.substring(104, 106) + "-" + d.substring(106, 108)
+                id = d.substring(0, 9).trim { it <= ' ' }
+                lastname1 = d.substring(9, 35).trim { it <= ' ' }
+                lastname2 = d.substring(35, 61).trim { it <= ' ' }
+                name = d.substring(61, 91).trim { it <= ' ' }
+                gender = d[91]
+                birthdate = d.substring(92, 96) + "-" + d.substring(96, 98) + "-" + d.substring(98, 100)
+                expirationdate = d.substring(100, 104) + "-" + d.substring(104, 106) + "-" + d.substring(106, 108)
             }
         } catch (e: Exception) {
             p = null
